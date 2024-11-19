@@ -8,8 +8,9 @@ import { IconSymbol } from '@/components/ui/IconSymbol';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-export default function TabLayout() {
+export default function DrawerLayout() {
   const colorScheme = useColorScheme();
 
   return (
@@ -53,6 +54,19 @@ export default function TabLayout() {
     //     title:'Home'
     //   }}/>
     // </Drawer>
-    <Drawer />
+    <GestureHandlerRootView style={{flex:1}}>
+      <Drawer>
+      <Drawer.Screen name="index" options={{
+        title:'Home'
+      }}/>
+      <Drawer.Screen name="explore" options={{
+        title:'Explore'
+      }}/>
+      <Drawer.Screen name="custom-page" options={{
+        title:'Custom Page',
+      }}/>
+      </Drawer>
+    </GestureHandlerRootView>
+    
   );
 }
