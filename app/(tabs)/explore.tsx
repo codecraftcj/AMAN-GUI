@@ -1,4 +1,4 @@
-import { StyleSheet, Image, Platform } from 'react-native';
+import { StyleSheet, Image, Platform,Text} from 'react-native';
 
 import { Collapsible } from '@/components/Collapsible';
 import { ExternalLink } from '@/components/ExternalLink';
@@ -23,6 +23,7 @@ export default function TabTwoScreen() {
         <ThemedText type="title">Explore</ThemedText>
       </ThemedView>
       <ThemedText>This app includes example code to help you get started.</ThemedText>
+      <Text style={styles.bigBlue}>just bigBlue</Text>
       <Collapsible title="File-based routing">
         <ThemedText>
           This app has two screens:{' '}
@@ -105,5 +106,10 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     gap: 8,
+  },
+  bigBlue: {
+    color: 'blue',
+    fontWeight: 'bold',
+    fontSize: 30,
   },
 });
