@@ -32,7 +32,7 @@ export default function RootLayout() {
     <ThemeProvider value={ DefaultTheme}>
       
       <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />
