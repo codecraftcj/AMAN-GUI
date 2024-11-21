@@ -1,4 +1,4 @@
-import { DarkTheme, DefaultTheme, NavigationContainer, ThemeProvider } from '@react-navigation/native';
+import {  DarkTheme, DefaultTheme, NavigationContainer, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack,useRouter,useSegments } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -8,35 +8,35 @@ import 'react-native-reanimated';
 import '../global.css';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { AuthProvider,useAuth } from '../app/context/AuthContext';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './(drawer)';
+import SignIn from './signIn';
+
+import SignUp from './signUp';
 
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 
+
 const MainLayout = () => {
   const {authState, onLogout} = useAuth();
   const router = useRouter();
-
-  useEffect(()=>{
-    if(authState?.authenticated){
-        router.replace('/(drawer)/Home')
-    }else{
-      router.replace('/(drawer)/water-data');
-    }
-  })
+  
   return(
     <ThemeProvider value={ DefaultTheme}>
+      
 
-      {authState?.authenticated ?<Stack>
-        <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack> : 
       <Stack>
-        <Stack.Screen  name="signIn" options={{ headerShown: false }}/>
-        <Stack.Screen  name="signUp" options={{ headerShown: false }}/>
-      </Stack>}
-      <StatusBar style="auto" />
+      {authState?.authenticated ?(
+        <Stack.Screen name="Home" ></Stack.Screen>
+        
+        ):(
+          <Stack.Screen name="signIn" ></Stack.Screen>
+        
+      )}</Stack>
+
 
       
     </ThemeProvider>

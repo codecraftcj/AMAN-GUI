@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import React from 'react';
+import { useState} from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import {
   Alert,
@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import * as yup from 'yup';
 import { Stack,useRouter,useSegments } from 'expo-router';
-
+import {useAuth } from '../app/context/AuthContext'
 interface FormData {
   email: string;
   password: string;
@@ -28,13 +28,19 @@ const schema = yup.object().shape({
 });
 
 const SignIn = () => {
+  const [email,setEmail] = useState('');
+  const [password,setPassword] = useState('');
   const { control, handleSubmit, formState: { errors } } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
   const router = useRouter();
-  const onSubmit = handleSubmit((data) => {
-    Alert.alert('Sign In', `Email: ${data.email}\nPassword: ${data.password}`);
-  });
+  const { onLogin} = useAuth();
+  const login = async () => {
+    const result = await onLogin!(email,password);
+    if (result && result.erro){
+      alert(result.msg)
+    }
+  }
 
   const goToSignUp = () => {
     router.replace("/signUp",)
@@ -61,8 +67,8 @@ const SignIn = () => {
                   placeholderTextColor="#888"
                   keyboardType="email-address"
                   onBlur={onBlur}
-                  onChangeText={onChange}
-                  value={value}
+                  onChangeText={(text:string)=>setEmail(text)}
+                  value={email}
                 />
               )}
             />
@@ -82,8 +88,8 @@ const SignIn = () => {
                   placeholderTextColor="#888"
                   secureTextEntry
                   onBlur={onBlur}
-                  onChangeText={onChange}
-                  value={value}
+                  onChangeText={(text:string)=>setPassword(text)}
+                  value={password}
                 />
               )}
             />
@@ -91,7 +97,7 @@ const SignIn = () => {
           </View>
 
           {/* Submit Button */}
-          <TouchableOpacity style={styles.button} onPress={onSubmit}>
+          <TouchableOpacity style={styles.button} onPress={login}>
             <Text style={styles.buttonText}>Sign In</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={goToSignUp} className='mt-5'>

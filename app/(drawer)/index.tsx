@@ -1,16 +1,28 @@
-import { Image, StyleSheet, Platform, View, Text} from 'react-native';
+import { Image, StyleSheet, Platform, View, Text,TouchableOpacity} from 'react-native';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-
+import {useAuth} from '../../app/context/AuthContext';
 export default function HomeScreen() {
+  const {onLogout} = useAuth();
+  const logout = async () => {
+    const result = await onLogout!();
+    console.log("LOG OUT PRESSED")
+    if (result && result.erro){
+      alert(result.msg)
+    }
+  }
+  // logout();
   return (
     <View>
       <Text>
         Drawer 1
       </Text>
+      <TouchableOpacity style={styles.button} onPress={logout}>
+            <Text style={styles.buttonText}>Log Out</Text>
+      </TouchableOpacity>
     </View>
     // <ParallaxScrollView
     //   headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
@@ -60,20 +72,51 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
+    backgroundColor: '#1e1e1e',
+    padding: 16,
+    justifyContent: 'center',
   },
-  stepContainer: {
-    gap: 8,
+  formContainer: {
+    backgroundColor: '#2e2e2e',
+    padding: 24,
+    borderRadius: 8,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: '#fff',
+    textAlign: 'center',
+    marginBottom: 16,
+  },
+  inputContainer: {
+    marginBottom: 16,
+  },
+  label: {
+    color: '#fff',
     marginBottom: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  input: {
+    backgroundColor: '#444',
+    color: '#fff',
+    borderRadius: 4,
+    padding: 12,
+    fontSize: 16,
+  },
+  error: {
+    color: '#ff6b6b',
+    marginTop: 4,
+  },
+  button: {
+    backgroundColor: '#4caf50',
+    padding: 16,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '600',
   },
 });

@@ -62,8 +62,8 @@ export default function DrawerLayout() {
       <Drawer.Screen name="explore" options={{
         title:'Explore'
       }}/>
-      <Drawer.Screen name="custom-page" options={{
-        title:'Custom Page',
+      <Drawer.Screen name="water-data" options={{
+        title:'Water Data',
       }}/>
       </Drawer>
     </GestureHandlerRootView>
