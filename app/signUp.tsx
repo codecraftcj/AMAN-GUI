@@ -1,18 +1,18 @@
 import { View, Text, TextInput, Button } from "react-native";
 import { useState } from "react";
-import { useAuth } from "../context/auth";
+import { useAuth } from "../app/context/AuthContext";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { signUp } = useAuth();
+//   const { register } = useAuth();
 
   return (
     <View>
       <Text>Sign Up</Text>
       <TextInput placeholder="Email" value={email} onChangeText={setEmail} />
       <TextInput placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry />
-      <Button title="Sign Up" onPress={() => signUp(email, password)} />
+      {/* <Button title="Sign Up" onPress={() => onRegister(email, password)} /> */}
     </View>
   );
 }
