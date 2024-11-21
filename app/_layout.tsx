@@ -16,11 +16,12 @@ SplashScreen.preventAutoHideAsync();
 const MainLayout = () => {
   const {authState, onLogout} = useAuth();
   const router = useRouter();
+
   useEffect(()=>{
     if(authState?.authenticated){
         router.replace('/(drawer)/Home')
     }else{
-      router.replace('/signI');
+      router.replace('/signIn');
     }
   })
   return(
