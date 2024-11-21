@@ -9,6 +9,7 @@ import '../global.css';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { AuthProvider,useAuth } from '../app/context/AuthContext';
 
+
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
@@ -21,7 +22,7 @@ const MainLayout = () => {
     if(authState?.authenticated){
         router.replace('/(drawer)/Home')
     }else{
-      router.replace('/signIn');
+      router.replace('/(drawer)/water-data');
     }
   })
   return(
@@ -32,7 +33,8 @@ const MainLayout = () => {
         <Stack.Screen name="+not-found" />
       </Stack> : 
       <Stack>
-        <Stack.Screen  name="signIn"/>
+        <Stack.Screen  name="signIn" options={{ headerShown: false }}/>
+        <Stack.Screen  name="signUp" options={{ headerShown: false }}/>
       </Stack>}
       <StatusBar style="auto" />
 

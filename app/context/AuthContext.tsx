@@ -10,7 +10,7 @@ interface AuthProps{
 }
 
 const TOKEN_KEY = 'my-jwt';
-export const API_URL = 'https://api.'
+export const API_URL = 'https://amanrest-925084270691.asia-east2.run.app/'
 const AuthContext = createContext<AuthProps>({});
 
 export const useAuth = () => {

@@ -14,6 +14,7 @@ import {
   View,
 } from 'react-native';
 import * as yup from 'yup';
+import { Stack,useRouter,useSegments } from 'expo-router';
 
 interface FormData {
   email: string;
@@ -26,15 +27,18 @@ const schema = yup.object().shape({
   password: yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
 });
 
-const App: React.FC = () => {
+const SignIn = () => {
   const { control, handleSubmit, formState: { errors } } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
-
+  const router = useRouter();
   const onSubmit = handleSubmit((data) => {
     Alert.alert('Sign In', `Email: ${data.email}\nPassword: ${data.password}`);
   });
 
+  const goToSignUp = () => {
+    router.replace("/signUp",)
+  }
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <KeyboardAvoidingView
@@ -89,6 +93,9 @@ const App: React.FC = () => {
           {/* Submit Button */}
           <TouchableOpacity style={styles.button} onPress={onSubmit}>
             <Text style={styles.buttonText}>Sign In</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={goToSignUp} className='mt-5'>
+            <Text style={styles.buttonText}>Sign Up</Text>
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
@@ -146,4 +153,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default SignIn;
