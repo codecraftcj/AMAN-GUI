@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import { View } from 'react-native';
 
 const FlexDimensionsBasics = () => {
   return (
@@ -9,7 +9,8 @@ const FlexDimensionsBasics = () => {
     <View style={{flex: 1}}>
       <View style={{flex: 1, backgroundColor: 'powderblue'}} />
       <View style={{flex: 2, backgroundColor: 'skyblue'}} />
-      <View style={{flex: 3, backgroundColor: 'steelblue'}} />
+      {/* <View style={{flex: 3, backgroundColor: 'steelblue'}} /> */}
+      <View className='flex-1 bg-red-300'></View>
     </View>
   );
 };
