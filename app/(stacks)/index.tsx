@@ -1,5 +1,4 @@
-import { Text, View, StyleSheet,TouchableOpacity,Dimensions } from 'react-native';
-import { Image } from 'expo-image';
+import { Text, View, StyleSheet,TouchableOpacity,Dimensions,Image} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 
@@ -28,7 +27,7 @@ export default function Index() {
     </View>
       : 
       
-      <View className=' items-center w-[42%] h-[75%] m-auto bg-white rounded-md'>
+      <View className=' items-center w-[536.76px] h-[708px] m-auto bg-white rounded-md'>
       <Image source={require('@/assets/images/aman-logo.png')} style={styles.image}  className='mt-[10%]'/>
     
         <TouchableOpacity className='justify-center items-center  bg-[#032D61] h-[10%] w-[50%] rounded-lg' onPress={() => router.push('/signIn')}>
