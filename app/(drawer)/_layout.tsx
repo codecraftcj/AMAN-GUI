@@ -1,4 +1,4 @@
-import { Stack } from 'expo-router';
+import { Drawer} from 'expo-router/drawer';
 import React from 'react';
 import { Platform } from 'react-native';
 
@@ -7,28 +7,27 @@ import { IconSymbol } from '@/components/ui/IconSymbol';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function TabLayout() {
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+export default function DrawerLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-      }}>
-      <Stack.Screen
-        name="index"
+    <GestureHandlerRootView style={{ flex: 1 }}>
+     <Drawer>
+      <Drawer.Screen
+        name="home"
         options={{
           title: 'Home',
         }}
       />
-      <Stack.Screen
-        name="signIn"
+      <Drawer.Screen
+        name="devices"
         options={{
-          title: 'Sign In',
+          title: 'Devices',
         }}
       />
-
-    </Stack>
+    </Drawer>
+  </GestureHandlerRootView>
+   
   );
 }

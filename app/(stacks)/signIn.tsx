@@ -35,7 +35,7 @@ export default function signIn() {
               ></BouncyCheckbox>
           </View>
         
-          <TouchableOpacity className='justify-center items-center bg-[#032D61] h-[7.5%] w-[30.3%] rounded-lg mt-[5%]' onPress={() => router.push('/signIn')}>
+          <TouchableOpacity className='justify-center items-center bg-[#032D61] h-[7.5%] w-[30.3%] rounded-lg mt-[5%]' onPress={() => router.replace('/home')}>
             <Text className='text-white text-lg '>
                 Sign In Mobile
             </Text>
@@ -67,7 +67,7 @@ export default function signIn() {
     
             </View>
           
-            <TouchableOpacity className='justify-center items-center  bg-[#032D61] h-[7.5%] w-[30.3%] rounded-lg mt-[5%]' onPress={() => router.push('/signIn')}>
+            <TouchableOpacity className='justify-center items-center  bg-[#032D61] h-[7.5%] w-[30.3%] rounded-lg mt-[5%]' onPress={() => router.replace('/home')}>
               <Text className='text-white text-lg'>
                   Sign In
               </Text>
