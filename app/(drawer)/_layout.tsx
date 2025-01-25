@@ -12,21 +12,59 @@ export default function DrawerLayout() {
   const colorScheme = useColorScheme();
 
   return (
+
     <GestureHandlerRootView style={{ flex: 1 }}>
      <Drawer>
       <Drawer.Screen
-        name="home"
+        name="dashboard"
         options={{
           title: 'Home',
         }}
       />
       <Drawer.Screen
-        name="devices"
+        name="control-room"
         options={{
-          title: 'Devices',
+          title: 'Control Room',
+        }}
+      />
+      <Drawer.Screen
+        name="reports"
+        options={{
+          title: 'Reports',
+        }}
+      />
+      <Drawer.Screen
+        name="notification"
+        options={{
+          title: 'Notification',
+        }}
+      />
+      <Drawer.Screen
+        name="database"
+        options={{
+          title: 'Database',
+        }}
+      />
+      <Drawer.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+        }}
+      />
+      <Drawer.Screen
+        name="system-preferences"
+        options={{
+          title: 'System Preferences',
+        }}
+      />
+      <Drawer.Screen
+        name="app-settings"
+        options={{
+          title: 'App Settings',
         }}
       />
     </Drawer>
+
   </GestureHandlerRootView>
    
   );
