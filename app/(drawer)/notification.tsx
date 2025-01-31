@@ -1,7 +1,7 @@
 import { Text, View, StyleSheet,TouchableOpacity,Dimensions,Image} from 'react-native';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-
+import Notification from '@/components/Notification';
 
 export default function Index() {
 
@@ -15,16 +15,10 @@ export default function Index() {
       <View className={isMobile ? "flex-1 bg-white": "flex-1 bg-[#032D61]"}>
       
       {isMobile ? 
-      <View className=' items-center w-[42%] h-[80%] m-auto bg-white rounded-md'>
-      <Image source={require('@/assets/images/aman-logo.png')} style={styles.image}  className='mt-[10%]'/>
-    
-        <TouchableOpacity className='justify-center items-center  bg-[#032D61] h-[10%] w-[120%] mt-[10%] rounded-3xl' onPress={() => router.push('/')}>
-            <Text className='text-white text-lg'>
-                Drawer Devices
-            </Text>
-        </TouchableOpacity>
-  
-    </View>
+      <View className='w-full'>
+
+      <Notification title="Sample Title" message="Sample Message" timestamp={new Date().toISOString()} />
+        </View>
       : 
       
       <View className=' items-center w-[536.76px] h-[708px] m-auto bg-white rounded-md'>

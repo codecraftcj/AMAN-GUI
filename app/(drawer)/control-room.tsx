@@ -1,7 +1,9 @@
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions, Image } from 'react-native';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-
+import DeviceCard  from '@/components/DeviceCard';
+import AddDeviceButton from '@/components/AddDeviceButton';
+import React from 'react';
 export default function Index() {
     const { width, height } = Dimensions.get('window');
     const isMobile = width <= 768; // Example breakpoint for mobile devices
@@ -10,34 +12,22 @@ export default function Index() {
     return (
         <SafeAreaProvider>
             <SafeAreaView style={{ flex: 1 }}>
+              
                 <View className={isMobile ? "flex-1 bg-white" : "flex-1 bg-[#032D61]"}>
                     {isMobile ?
-                        <View className='items-center w-[42%] h-[80%] m-auto bg-white rounded-md'>
-                            <Image source={require('@/assets/images/aman-logo.png')} style={styles.image} className='mt-[10%]' />
-                            <TouchableOpacity className='justify-center items-center bg-[#032D61] h-[10%] w-[120%] mt-[10%] rounded-3xl' onPress={() => router.push('/signIn')}>
-                                <Text className='text-white text-lg'>
-                                    Drawer Devices
-                                </Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity className='justify-center items-center bg-[#032D61] h-[10%] w-[120%] mt-[5%] rounded-3xl' onPress={() => router.push('/settings')}>
-                                <Text className='text-white text-lg'>
-                                    Settings
-                                </Text>
-                            </TouchableOpacity>
-                        </View>
+                        // mobile section
+                          <>
+                          <AddDeviceButton />
+
+                          <DeviceCard deviceName="Example Device"/>
+         
+          
+                          </>
+                          
+                        
                         :
                         <View className='items-center w-[536.76px] h-[708px] m-auto bg-white rounded-md'>
-                            <Image source={require('@/assets/images/aman-logo.png')} style={styles.image} className='mt-[10%]' />
-                            <TouchableOpacity className='justify-center items-center bg-[#032D61] h-[10%] w-[50%] rounded-lg' onPress={() => router.push('/signIn')}>
-                                <Text className='text-white text-lg'>
-                                    Drawer Devices
-                                </Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity className='justify-center items-center bg-[#032D61] h-[10%] w-[50%] mt-[5%] rounded-lg' onPress={() => router.push('/settings')}>
-                                <Text className='text-white text-lg'>
-                                    Settings
-                                </Text>
-                            </TouchableOpacity>
+                        
                         </View>
                     }
                 </View>

@@ -2,7 +2,7 @@ import { Text, View, StyleSheet,TouchableOpacity,Dimensions,Image,Switch} from '
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import React, {useState} from 'react';
-
+import WaterParametersTable from '@/components/WaterParametersTable';
 export default function Database() {
 
     const [isEnabled, setIsEnabled] = useState(false);
@@ -17,16 +17,9 @@ export default function Database() {
       <View className={isMobile ? "flex-1 bg-white": "flex-1 bg-[#032D61]"}>
       
       {isMobile ? 
-      <View className=' items-center w-[42%] h-[80%] m-auto bg-white rounded-md'>
-      <Image source={require('@/assets/images/aman-logo.png')} style={styles.image}  className='mt-[10%]'/>
-    
-        <TouchableOpacity className='justify-center items-center  bg-[#032D61] h-[10%] w-[120%] mt-[10%] rounded-3xl' onPress={() => router.push('/')}>
-            <Text className='text-white text-lg'>
-                Drawer Devices
-            </Text>
-        </TouchableOpacity>
+      <WaterParametersTable />
   
-    </View>
+
       : 
       
       <View className=' items-center w-[536.76px] h-[708px] m-auto bg-white rounded-md'>

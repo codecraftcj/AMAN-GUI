@@ -27,12 +27,7 @@ export default function DrawerLayout() {
           title: 'Control Room',
         }}
       />
-      <Drawer.Screen
-        name="reports"
-        options={{
-          title: 'Reports',
-        }}
-      />
+
       <Drawer.Screen
         name="notification"
         options={{
@@ -45,22 +40,10 @@ export default function DrawerLayout() {
           title: 'Database',
         }}
       />
-      <Drawer.Screen
-        name="profile"
+    <Drawer.Screen
+        name="logout"
         options={{
-          title: 'Profile',
-        }}
-      />
-      <Drawer.Screen
-        name="system-preferences"
-        options={{
-          title: 'System Preferences',
-        }}
-      />
-      <Drawer.Screen
-        name="app-settings"
-        options={{
-          title: 'App Settings',
+          title: 'logout',
         }}
       />
     </Drawer>
