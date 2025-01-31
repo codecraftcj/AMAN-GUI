@@ -18,7 +18,7 @@ export default function Index() {
       <View className=' items-center w-[42%] h-[80%] m-auto bg-white rounded-md'>
       <Image source={require('@/assets/images/aman-logo.png')} style={styles.image}  className='mt-[10%]'/>
     
-        <TouchableOpacity className='justify-center items-center  bg-[#032D61] h-[10%] w-[120%] mt-[10%] rounded-3xl' onPress={() => router.push('/signIn')}>
+        <TouchableOpacity className='justify-center items-center  bg-[#032D61] h-[10%] w-[120%] mt-[10%] rounded-3xl' onPress={() => router.push('/index')}>
             <Text className='text-white text-lg'>
                 Drawer Devices
             </Text>
