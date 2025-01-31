@@ -22,6 +22,7 @@ export default function signIn() {
   const checkTerminalAccessPoint = () => {
     const fetchData = async () => {
       try {
+        console.log(terminalAccessPoint);
         const response = await fetch(terminalAccessPoint);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -32,7 +33,7 @@ export default function signIn() {
         router.replace('/dashboard')
         setData(result);
       } catch (err) {
-        setError(err.message);
+        console.log(err.message)
       } finally {
         setLoading(false);
       }
@@ -49,9 +50,9 @@ export default function signIn() {
           <View className=' items-center w-full h-full bg-white rounded-md'>
           <Image source={require('@/assets/images/aman-logo.png')}  className='h-[50%] w-[50%]'/>
         
-          <TextInput className='bg-[#F4F4F4] rounded-[5px] h-[7.5%] w-[75%] border border-black/10 color-[#7C6F6F] pl-[2.5%] text-lg' placeholder='terminal access point'/>
+          <TextInput className='bg-[#F4F4F4] rounded-[5px] h-[7.5%] w-[75%] border border-black/10 color-[#7C6F6F] pl-[2.5%] text-lg' placeholder='terminal access point' onChangeText={text=>setTerminalAccessPoint(text)}/>
 
-          <TouchableOpacity className='justify-center items-center  bg-[#032D61] h-[7.5%] w-[30.3%] rounded-lg mt-[5%]' onPress={() => router.replace('/dashboard')}>
+          <TouchableOpacity className='justify-center items-center  bg-[#032D61] h-[7.5%] w-[30.3%] rounded-lg mt-[5%]' onPress={() => checkTerminalAccessPoint()}>
               <Text className='text-white text-lg'>
                   Access Dashboard
               </Text>
