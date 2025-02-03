@@ -53,7 +53,7 @@ export default function signIn() {
           <TextInput className='bg-[#F4F4F4] rounded-[5px] h-[7.5%] w-[75%] border border-black/10 color-[#7C6F6F] pl-[2.5%] text-lg' placeholder='terminal access point' onChangeText={text=>setTerminalAccessPoint(text)}/>
 
           {/* <TouchableOpacity className='justify-center items-center  bg-[#032D61] h-[7.5%] w-[30.3%] rounded-lg mt-[5%]' onPress={() => checkTerminalAccessPoint()}> */}
-          <TouchableOpacity className='justify-center items-center  bg-[#032D61] h-[7.5%] w-[30.3%] rounded-lg mt-[5%]' onPress={() => router.replace('/dashboard')}>
+          <TouchableOpacity className='justify-center items-center  bg-[#032D61] h-[7.5%] w-[30.3%] rounded-lg mt-[5%]' onPress={() => checkTerminalAccessPoint()}>
               <Text className='text-white text-lg'>
                   Access Dashboard
               </Text>

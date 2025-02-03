@@ -8,14 +8,16 @@ export default function Index() {
     const { width, height } = Dimensions.get('window');
     const isMobile = width <= 768; // Example breakpoint for mobile devices
     const router = useRouter();
-    const [terminalAccessPoint, setTerminalAccessPoint] = useState("");
+    
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const [terminalAccessPoint, setTerminalAccessPoint] = useState("");
     const getTerminalAccessPoint  = async (): Promise<string | null> => {
       try {
         const accessPoint = await AsyncStorage.getItem("terminalAccessPoint");
+
       return accessPoint ? accessPoint : null;
       } catch(e) { 
         console.log(e)
@@ -26,7 +28,22 @@ export default function Index() {
       getTerminalAccessPoint().then((value) => {setTerminalAccessPoint(value ?? "")});
     }, []);
 
+    const getData = async () => {
+      try {
+        console.log(terminalAccessPoint + "/get-jobs")
+        const response = await fetch(terminalAccessPoint + "get-jobs");
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const result = await response.json();
+        console.log
 
+        setData(result);
+      }catch(err){
+
+      }
+    }
+    
     return (
       <SafeAreaProvider>
       <SafeAreaView style={{flex: 1}}>
@@ -36,6 +53,13 @@ export default function Index() {
       <View className=' items-center w-[42%] h-[80%] m-auto bg-white rounded-md'>
       <Image source={require('@/assets/images/aman-logo.png')} style={styles.image}  className='mt-[10%]'/>
       <Text>{terminalAccessPoint}</Text>
+      <TouchableOpacity
+        onPress={() => getData()}
+        activeOpacity={0.7}
+      >
+        <Text>Test Data</Text>
+
+      </TouchableOpacity>
       {/* <View style={{ padding: 20 }}>
       {loading ? (
         <ActivityIndicator size="large" color="#0000ff" />

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Modal, TouchableOpacity, StyleSheet } from "react-native";
 import { Card, Button } from "react-native-paper";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 type DeviceProps = {
   deviceName: string;
 };
@@ -9,15 +9,46 @@ type DeviceProps = {
 const DeviceCard: React.FC<DeviceProps> = ({ deviceName }) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [liveData, setLiveData] = useState<string>("Fetching...");
+  const [terminalAccessPoint, setTerminalAccessPoint] = useState("");
+  // const fetchLiveData = () => {
+  //   // Simulate fetching live data
+  //   setLiveData("Temperature: 25°C, Humidity: 60%");
+  // };
+  const getTerminalAccessPoint  = async (): Promise<string | null> => {
+    try {
+      const accessPoint = await AsyncStorage.getItem("terminalAccessPoint");
 
-  const fetchLiveData = () => {
-    // Simulate fetching live data
-    setLiveData("Temperature: 25°C, Humidity: 60%");
-  };
+    return accessPoint ? accessPoint : null;
+    } catch(e) { 
+      console.log(e)
+      return null;
+    }}
 
+    const getWaterParameters = async () => {
+      try {
+        console.log(terminalAccessPoint + "/get-latest-water-parameters")
+        const response = await fetch(terminalAccessPoint + "/get-latest-water-parameters");
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const result = await response.json();
+        const resultString = JSON.stringify(result)
+        console.log(resultString)
+
+        setLiveData(resultString);
+      }catch(err){
+
+      }
+    }
+    
+  useEffect(() => {
+    getTerminalAccessPoint().then((value) => {setTerminalAccessPoint(value ?? "")});
+    getWaterParameters()
+    
+  }, []);
   return (
     <>
-      <TouchableOpacity onPress={() => { setModalVisible(true); fetchLiveData(); }}>
+      <TouchableOpacity onPress={() => { setModalVisible(true); getWaterParameters(); }}>
         <Card style={styles.card}>
           <Card.Content>
             <Text style={styles.deviceName}>{deviceName}</Text>
@@ -38,8 +69,8 @@ const DeviceCard: React.FC<DeviceProps> = ({ deviceName }) => {
             <Text style={styles.liveData}>{liveData}</Text>
 
             <View style={styles.buttonContainer}>
-              <Button mode="contained" onPress={() => console.log("Action 1 Triggered")}>Action 1</Button>
-              <Button mode="contained" onPress={() => console.log("Action 2 Triggered")}>Action 2</Button>
+              <Button mode="contained" onPress={() => console.log("Action 1 Triggered")}>Open Feed Hatch</Button>
+              <Button mode="contained" onPress={() => console.log("Action 2 Triggered")}>Close Feed Hatch</Button>
             </View>
 
             <Button mode="outlined" onPress={() => setModalVisible(false)}>Close</Button>

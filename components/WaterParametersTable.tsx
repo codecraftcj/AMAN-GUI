@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 import { DataTable } from 'react-native-paper';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface WaterParametersTableProps {
     limit?: number;
@@ -15,13 +16,28 @@ interface WaterParameters {
 
 const WaterParametersTable : React.FC<WaterParametersTableProps> = ({ limit = 100 }) => {
     const [data, setData] = useState([]);
+    const [terminalAccessPoint, setTerminalAccessPoint] = useState("");
+    const getTerminalAccessPoint  = async (): Promise<string | null> => {
+      try {
+        const accessPoint = await AsyncStorage.getItem("terminalAccessPoint");
+
+        return accessPoint ? accessPoint : null;
+      } catch(e) { 
+        console.log(e)
+        return null;
+      }
+    }
 
     useEffect(() => {
-        fetch(`http://your-flask-api-url/get_water_parameters?limit=${limit}`)
+        getTerminalAccessPoint().then((value) => {setTerminalAccessPoint(value ?? "none found")});
+        console.log(terminalAccessPoint);
+        console.log("Data: ", data)
+        console.log(`${terminalAccessPoint}/get_water_parameters?limit=${limit}`)
+        fetch(`${terminalAccessPoint}/get_water_parameters?limit=${limit}`)
             .then((response) => response.json())
             .then((json) => setData(json))
             .catch((error) => console.error(error));
-    }, [limit]);
+    }, []);
     const sampleData = [
         {
             id: 1,
@@ -48,7 +64,7 @@ const WaterParametersTable : React.FC<WaterParametersTableProps> = ({ limit = 10
                     <DataTable.Title>pH Level</DataTable.Title>
                     <DataTable.Title>H₂S Level (mg/L)</DataTable.Title>
                 </DataTable.Header>
-                {sampleData.map((item: WaterParameters, index) => (
+                {data.map((item: WaterParameters, index) => (
                     <DataTable.Row key={index}>
                         <DataTable.Cell>{item.temperature}</DataTable.Cell>
                         <DataTable.Cell>{item.turbidity}</DataTable.Cell>
