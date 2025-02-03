@@ -1,50 +1,66 @@
-# Welcome to your Expo app 👋
+# AMAN Project
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is an Expo project created with `create-expo-app`.
 
-## Get started
+## Get Started
 
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```sh
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Install dependencies
 
-## Learn more
+## Start the app
 
-To learn more about developing your project with Expo, look at the following resources:
+```sh
+npm start
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+In the output, you'll find options to open the app in a:
 
-## Join the community
+- **Development build**
+- **Android emulator**
+- **iOS simulator**
+- **Expo Go**, a limited sandbox for trying out app development with Expo
 
-Join our community of developers creating universal apps.
+You can start developing by editing the files inside the `app` directory. This project uses file-based routing.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Project Structure
+
+```
+.expo/
+.vscode/
+app/
+  _layout.tsx
+  (drawer)/
+    control-room.tsx
+    dashboard.tsx
+    database.tsx
+    logout.tsx
+    notification.tsx
+  (stacks)/
+  +not-found.tsx
+archive-pages/
+assets/
+components/
+constants/
+hooks/
+scripts/
+```
+
+## GUI Development
+
+The graphical user interface (GUI) is being developed for **Web, iOS, and Android** platforms.
+
+### User Types
+
+The application will support three types of users:
+
+1. **Fish Farmer**
+2. **Business Owner**
+3. **Data Experts**
+
+### Current Version Status
+
+- The current version is only made for **iOS** and is specifically designed for **Fish Farmers**.
+- Development for **Web, Android, and the other user types** is in progress.
